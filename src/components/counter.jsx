@@ -5,15 +5,16 @@ class Counter extends React.Component {
     count: 0,
   };
 
-  // **Arrow functions don't rebind the "this" keyword, they inherit. It is a lot cleaner than the constructor/super-with-special-syntax method
-  handleIncrement = () => { // in React, you need to tell it what to update with the setState method which is a property of the React.Component
-    this.setState({ count: this.state.count + 1}); // now that react knows, at some point, it will schedule a call to the render method. We don't know exactly when, it happens asynchronously.
+  handleIncrement = product => {
+    console.log(product);
+    this.setState({ count: this.state.count + 1});
   }
 
   render() {
-    return (
+    return ( // use a wrapper arrow function with handleIncrement to be able to add an argument to it. For this example, we are hard coding "id: 1", but it could be the results from mapping over data.
     <div>
-      <span className={this.getBadgeClasses()}>{this.formatCount()}</span><button onClick={this.handleIncrement} className="btn btn-secondary btn-sm">Increment</button>
+      <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+      <button onClick={() => this.handleIncrement({ id: 1 })} className="btn btn-secondary btn-sm">Increment</button>
     </div>
     );
   }
