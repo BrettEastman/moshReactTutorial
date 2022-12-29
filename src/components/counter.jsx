@@ -3,12 +3,11 @@ import React from 'react';
 class Counter extends React.Component {
   state = {
     count: 0,
-    tags: []
   };
 
   // **Arrow functions don't rebind the "this" keyword, they inherit. It is a lot cleaner than the constructor/super-with-special-syntax method
-  handleIncrement = () => {
-    console.log('clicked!', this);
+  handleIncrement = () => { // in React, you need to tell it what to update with the setState method which is a property of the React.Component
+    this.setState({ count: this.state.count + 1}); // now that react knows, at some point, it will schedule a call to the render method. We don't know exactly when, it happens asynchronously.
   }
 
   render() {
