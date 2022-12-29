@@ -6,15 +6,9 @@ class Counter extends React.Component {
     tags: []
   };
 
-  // **FYI - this is the longer, classic way, using bind. For arrow function version, see next commit
-
-  constructor() { // Because we called the constructor of the child class, Counter, first we have to call the constructor of the parent class, React.Component, using the "super" keyword. In other words, we need to have super in there in order to have 'this' be defined as the Counter
-    super();
-    this.handleIncrement = this.handleIncrement.bind(this); // the bind method will make it to where, when we use the handleIncrement method, it will return a new instance of the handleIncrement function and in that new instance, this will always refer to the current object, rather than the window object.
-  }
-
-  handleIncrement() {
-    console.log('clicked!', this)
+  // **Arrow functions don't rebind the "this" keyword, they inherit. It is a lot cleaner than the constructor/super-with-special-syntax method
+  handleIncrement = () => {
+    console.log('clicked!', this);
   }
 
   render() {
